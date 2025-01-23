@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="himedia.myportal.mappers.UserMapper">
+	<insert id="insert" parameterType="userVo">
+	INSERT INTO users 
+	(name, password, email, gender)
+	VALUES(
+		#{name}, #{password}, #{email}, #{gender}
+	)
+		</insert>
+	<select id="selectUserByEmailAndPassword"
+		parameterType="map"
+		resultType="userVo">
+		SELECT no,
+			name, email, gender
+		FROM users
+		WHERE 
+			email=#{email} AND password=#{password}
+		</select>
+	<select id="selectUserByEmail"
+		parameterType="string"
+		resultType="userVo">
+		SELECT no, name, email, gender
+		FROM users
+		WHERE email=#{value}
+		</select>	
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="himedia.myportal.mappers.GuestbookMapper">
+	<select id="selectAll" resultType="guestbookVo">
+	SELECT no, name, password, content, regdate
+	FROM guestbook
+	ORDER BY regdate DESC;
+	</select>
+	
+	<insert id="insert"
+		parameterType="guestbookVo">
+	INSERT INTO guestbook
+		(name, password, content)
+	VALUES(#{name},
+			#{password},
+			#{content})	
+	</insert>
+	
+	<delete id="delete"
+		parameterType="guestbookVo">
+	DELETE FROM guestbook
+	WHERE no=#{no} AND password=#{password}
+	</delete>
+</mapper>
